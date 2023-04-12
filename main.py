@@ -31,7 +31,7 @@ def login_if_manager_doesnt_exist() -> db.User:
             break
 
     while True:
-        password = input("Password: ")
+        password = input_password("Password: ")
         if password:
             break
 
