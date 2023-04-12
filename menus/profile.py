@@ -1,19 +1,19 @@
 import db_operations as db
 from passwords import input_password
 
-def edit_profile(user: db.User):
-    print()
+def edit_profile(user: db.User, back_message):
     while True:
-        print("Profile:\n")
+        print()
+        print("------------- Profile -------------\n")
         print(user)
         print()
-        print('''Editing options
+        print(f'''Editing options
 
 [1] Change name
 [2] Change phone
 [3] Change email
 [4] Change password
-[Q] Back to Dashboard''')
+[Q] {back_message}''')
         response = input('>>> ')
         change_password = False
         if response == '1':
@@ -48,4 +48,3 @@ def edit_profile(user: db.User):
             db.commit()
         except Exception as e:
             print(e)
-        print()

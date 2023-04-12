@@ -14,7 +14,7 @@ def manager_menu(manager: db.User):
     csv_warning = True
     print()
     while True:
-        print('''-------------Manager Dashboard-------------
+        print('''------------- Manager Dashboard -------------
 
 [1] Edit profile
 [2] User options
@@ -26,7 +26,7 @@ def manager_menu(manager: db.User):
 [Q] Logout''')
         response = input(">>> ")
         if response == '1':
-            edit_profile(manager)
+            edit_profile(manager, back_message="Back to Dashboard")
         if response == '2':
             user_operations(manager)
         elif response == '3':

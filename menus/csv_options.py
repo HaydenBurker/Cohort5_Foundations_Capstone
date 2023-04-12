@@ -9,7 +9,7 @@ Press Enter to continue''')
         input('>>> ')
     print()
     while True:
-        print('''Import/export csv options
+        print('''------------- Import/export csv options -------------
 
 [1] Export users
 [2] Export competencies
@@ -52,31 +52,33 @@ Be very careful here! Choosing the wrong option may require a password reset for
                     users_imported = False
                     print("Import cancelled")
                 if users_imported:
-                    print(f'Imported {db.users_csv_import_path}')
+                    print(f"Imported '{db.users_csv_import_path}'")
+                else:
+                    print(f"Failed to import '{db.competencies_csv_import_path}'")
             else:
                 print(f'{db.users_csv_import_path} not found')
         elif response == '6':
             if db.check_competencies_import():
                 if db.import_competencies_from_csv():
-                    print(f'Imported {db.competencies_csv_import_path}')
+                    print(f"Imported '{db.competencies_csv_import_path}'")
                 else:
-                    print(f'Failed to import {db.competencies_csv_import_path}')
+                    print(f"Failed to import '{db.competencies_csv_import_path}'")
             else:
                 print(f'{db.competencies_csv_import_path} not found')
         elif response == '7':
             if db.check_assessments_import():
                 if db.import_assessments_from_csv():
-                    print(f'Imported {db.assessments_csv_import_path}')
+                    print(f"Imported '{db.assessments_csv_import_path}'")
                 else:
-                    print(f'Failed to import {db.assessments_csv_import_path}')
+                    print(f"Failed to import '{db.assessments_csv_import_path}'")
             else:
                 print(f'{db.assessments_csv_import_path} not found')
         elif response == '8':
             if db.check_assessment_results_import():
                 if db.import_assessment_results_from_csv():
-                    print(f'Imported {db.assessment_results_csv_import_path}')
+                    print(f"Imported '{db.assessment_results_csv_import_path}'")
                 else:
-                    print(f'Failed to import {db.assessment_results_csv_import_path}')
+                    print(f"Failed to import '{db.assessment_results_csv_import_path}'")
             else:
                 print(f'{db.assessment_results_csv_import_path} not found')
         elif response.upper() == 'Q':

@@ -119,7 +119,7 @@ def update_assessment_result():
             assessment_result.date_taken = new_date
         elif response == '3':
             db.delete_assessment_result(assessment_result)
-            print("Assessment result has been removed! Returning to dashboard.")
+            print("Assessment result has been removed! Returning to Assessment Result Options")
             break
         elif response.upper() == 'Q':
             break
@@ -136,7 +136,7 @@ def update_assessment_result():
 def assessment_result_operations(manager):
     print()
     while True:
-        print('''-------------Assessment Result Options-------------
+        print('''------------- Assessment Result Options -------------
 
 [1] Create assessment result
 [2] View all assessment results
@@ -150,10 +150,11 @@ def assessment_result_operations(manager):
                 print("Created assessment result")
             else:
                 print("Cancelled assessment result")
+            print()
         elif response == '2':
             view_all_assessment_results()
         elif response == '3':
             update_assessment_result()
+            print()
         elif response.upper() == 'Q':
             break
-        print()

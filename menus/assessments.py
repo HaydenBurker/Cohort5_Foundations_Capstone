@@ -44,15 +44,15 @@ def view_assessments_from_user():
     assessments = db.read_assessments_from_user(user_id)
     fields = ["User Name", "Assessment ID", "Assessment Name", "Competency Name"]
     print_table(assessments, fields)
+    print()
 
 def update_assessment():
     assessment_id = input("Assessment ID: ")
     if not assessment_id:
         return
-    print()
     assessment = db.read_assessment(assessment_id)
     if not assessment:
-        print("Assessment not found")
+        print("\nAssessment not found")
         return
     while True:
         print("\nAssessment Info:")
@@ -87,7 +87,7 @@ def update_assessment():
 def assessment_operations():
     print()
     while True:
-        print('''-------------Assessment Options-------------
+        print('''------------- Assessment Options -------------
 
 [1] Create assessment
 [2] View all assessments
@@ -102,12 +102,13 @@ def assessment_operations():
                 print(f"Created assessment '{assessment.name}'")
             else:
                 print("Cancelled assessment")
+            print()
         elif response == '2':
             view_all_assessments()
         elif response == '3':
             view_assessments_from_user()
         elif response == '4':
             update_assessment()
+            print()
         elif response.upper() == 'Q':
             break
-        print()

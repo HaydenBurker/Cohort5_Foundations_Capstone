@@ -1,7 +1,6 @@
 import db_operations as db
 from table_printer import print_table
 
-from date_operations import get_current_datetime
 from menus.competencies import view_all_competencies
 from menus.users import view_all_users
 from generate_pdf import user_competency_summary_to_pdf, competency_results_summary_to_pdf
@@ -10,6 +9,8 @@ def user_report(user: db.User):
     if user.user_type == db.UserTypes.manager:
         view_all_users()
         user_id = input("User ID: ") 
+        if not user_id:
+            return
         user_to_report = db.read_user(user_id)
         if not user_to_report:
             print("User not found")
@@ -24,8 +25,8 @@ def user_report(user: db.User):
     if user.user_type == db.UserTypes.user:
         return
     response = input("Do you want to save this report? (Y/N) ")
-    print()
     if response.upper() == 'Y':
+        print()
         export_report_options(\
             lambda: db.user_competency_summary_to_csv(user_to_report.user_id, user_summary, fields),\
             lambda: user_competency_summary_to_pdf(user_to_report.user_id, user_summary, fields))
@@ -43,8 +44,8 @@ def competency_report():
     fields = ["Competency ID", "Competency Name", "User Name", "Score", "Avg. Score", "Assessment Name", "Date Taken"]
     print_table(competency_summary, fields)
     response = input("\nDo you want to save this report? (Y/N) ")
-    print()
     if response.upper() == 'Y':
+        print()
         export_report_options(\
             lambda: db.competency_results_summary_to_csv(competency_id, competency_summary, fields),\
             lambda: competency_results_summary_to_pdf(competency_id, competency_summary, fields))
@@ -68,8 +69,9 @@ def export_report_options(export_to_csv, export_to_pdf):
         print()
 
 def report_options(user: db.User):
+    print()
     while True:
-        print('''Reports
+        print('''------------- Reports -------------
 
 [1] User Competency summary
 [2] Competency Results Summary

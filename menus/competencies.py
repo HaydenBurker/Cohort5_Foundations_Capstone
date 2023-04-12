@@ -63,7 +63,7 @@ def update_competency():
 def competency_operations():
     print()
     while True:
-        print('''-------------Competency Options-------------
+        print('''------------- Competency Options -------------
 
 [1] Create competency
 [2] View all competencies

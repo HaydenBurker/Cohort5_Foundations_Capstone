@@ -1,6 +1,6 @@
 import db_operations as db
 
-from date_operations import get_current_date, input_date
+from date_operations import input_date
 from passwords import input_password
 from table_printer import print_table
 from manager_menu import edit_profile
@@ -41,13 +41,12 @@ def update_user(manager: db.User):
     user_id = input("User ID: ")
     if not user_id:
         return
-    print()
     user = db.read_user(user_id)
     if not user:
-        print("User not found")
+        print("\nUser not found")
         return
     if user.user_id == manager.user_id:
-        edit_profile(manager)
+        edit_profile(manager, back_message="Back to User Options")
         return
     while True:
         print("\nUser Info:")
@@ -124,7 +123,7 @@ def update_user(manager: db.User):
 def user_operations(manager):
     print()
     while True:
-        print('''-------------User Options-------------
+        print('''------------- User Options -------------
 
 [1] Create user
 [2] View all users
@@ -138,10 +137,11 @@ def user_operations(manager):
                 print(f"Created user '{user.first_name} {user.last_name}'")
             else:
                 print("Cancelled user")
+            print()
         elif response == '2':
             view_all_users()
         elif response == '3':
             update_user(manager)
+            print()
         elif response.upper() == 'Q':
             break
-        print()

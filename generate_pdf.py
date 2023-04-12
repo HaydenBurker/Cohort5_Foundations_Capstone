@@ -1,7 +1,6 @@
 import db_operations as db
 from fpdf import FPDF
 from table_printer import get_column_sizes, format_rows
-from date_operations import get_current_datetime
 
 def print_table_to_pdf(pdf: FPDF, ln, rows, fields = None):
     width = 0
