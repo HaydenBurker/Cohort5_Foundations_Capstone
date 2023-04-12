@@ -277,16 +277,14 @@ def rollback():
 
 def user_competency_report(user: User, include_null_results: bool):
     if include_null_results:
-        query = '''SELECT u.user_id, u.first_name, u.last_name, c.name, a.name, ar.result_id, ar.score, AVG(ar.score), ar.date_taken
+        query = '''SELECT u.user_id, u.first_name, u.last_name, c.name, a.name, a.result_id, a.score, AVG(a.score), a.date_taken
 FROM Competencies AS c
 LEFT OUTER JOIN (
-    SELECT a.* FROM Assessment_Results AS ar
+    SELECT a.competency_id, a.name, ar.result_id, ar.score, ar.user_id, ar.date_taken FROM Assessment_Results AS ar
     JOIN Assessments as a ON ar.assessment_id = a.assessment_id
     WHERE ar.user_id = ?
-    GROUP BY a.assessment_id
 ) AS a ON a.competency_id = c.competency_id
-LEFT OUTER JOIN Assessment_Results AS ar ON ar.assessment_id = a.assessment_id
-LEFT OUTER JOIN Users AS u ON ar.user_id = u.user_id
+LEFT OUTER JOIN Users AS u ON a.user_id = u.user_id
 WHERE u.user_id = ? OR u.user_id IS NULL
 GROUP BY u.user_id, c.competency_id
 HAVING date_taken = MAX(date_taken) OR date_taken IS NULL
@@ -308,15 +306,14 @@ ORDER BY LOWER(c.name)'''
 
 def competency_result_report(competency_id, include_null_results: bool):
     if include_null_results:
-        query = '''SELECT c.competency_id, c.name, u.first_name, u.last_name, ar.score, a.name, ar.date_taken
+        query = '''SELECT c.competency_id, c.name, u.first_name, u.last_name, ar.score, ar.name, ar.date_taken
 FROM Users AS u
 LEFT OUTER JOIN (
-    SELECT ar.* FROM Assessment_Results AS ar
+    SELECT ar.user_id, ar.score, a.name, ar.date_taken, a.competency_id FROM Assessment_Results AS ar
     JOIN Assessments AS a ON a.assessment_id = ar.assessment_id
     WHERE a.competency_id = ?
 ) AS ar ON ar.user_id = u.user_id
-LEFT OUTER JOIN Assessments AS a ON a.assessment_id = ar.assessment_id
-LEFT OUTER JOIN Competencies AS c ON c.competency_id = a.competency_id
+LEFT OUTER JOIN Competencies AS c ON c.competency_id = ar.competency_id
 GROUP BY u.user_id, c.competency_id
 HAVING date_taken = MAX(date_taken) OR date_taken IS NULL
 ORDER BY LOWER(u.first_name), LOWER(u.last_name)'''
