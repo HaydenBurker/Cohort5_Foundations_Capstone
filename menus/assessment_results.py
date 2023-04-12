@@ -119,6 +119,7 @@ def update_assessment_result():
             assessment_result.date_taken = new_date
         elif response == '3':
             db.delete_assessment_result(assessment_result)
+            db.commit()
             print("Assessment result has been removed! Returning to Assessment Result Options")
             break
         elif response.upper() == 'Q':
