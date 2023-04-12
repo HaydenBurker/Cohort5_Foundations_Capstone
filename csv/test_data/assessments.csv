@@ -1,0 +1,27 @@
+assessment_id,competency_id,name,date_created
+1,1,Computer Anatomy Written Test ,2023-04-10
+2,2,Data Types Multiple Choice,2023-04-10
+3,3,Variables Multiple Choice,2023-04-10
+4,4,Functions Multiple Choice,2023-04-10
+5,5,Boolean Logic Free Response,2023-04-10
+6,6,Conditionals Competency Measure,2023-04-10
+7,7,Loops Free Response,2023-04-10
+8,7,Loops Multiple Choice,2023-04-10
+9,8,Data Structures Interview,2023-04-10
+10,8,Data Structures Free Response,2023-04-10
+11,8,Data Structures Project,2023-04-10
+12,8,Data Structures - Programming,2023-04-10
+13,9,Lists Free Response,2023-04-10
+14,9,Lists - Programming,2023-04-10
+15,10,Dictionaries Free Response,2023-04-10
+16,10,Dictionaries - Programming,2023-04-10
+17,11,Files Multiple Choice,2023-04-10
+18,13,QA Multiple Choice,2023-04-10
+19,14,OOP Multiple Choice,2023-04-10
+20,14,OOP Project,2023-04-10
+21,14,OOP Interview,2023-04-10
+22,15,Recursion Free Response,2023-04-10
+23,16,Databases Query Test 1,2023-04-10
+24,16,Databases Query Test 2,2023-04-10
+25,16,Databases Data Modeling Competency Measure,2023-04-10
+26,16,Databases Interview,2023-04-10

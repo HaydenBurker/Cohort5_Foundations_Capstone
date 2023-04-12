@@ -1,0 +1,13 @@
+Pipfile.lock
+__pycache__
+.DS_Store
+
+csv/exports/*
+!csv/exports/.gitkeep
+csv/imports/*
+!csv/imports/.gitkeep
+reports/*
+!reports/.gitkeep
+
+database/*
+!database/.gitkeep

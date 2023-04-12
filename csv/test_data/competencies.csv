@@ -1,0 +1,17 @@
+competency_id,name,date_created
+1,Computer Anatomy,2020-02-17
+2,Data Types,2022-07-05
+3,Variables,2020-07-24
+4,Functions,2022-05-26
+5,Boolean Logic,2020-11-21
+6,Conditionals,2022-10-14
+7,Loops,2020-06-10
+8,Data Structures,2020-10-07
+9,Lists,2020-03-29
+10,Dictionaries,2021-01-20
+11,Working with Files,2022-04-28
+12,Exception Handling,2022-05-28
+13,Quality Assurance (QA),2022-05-12
+14,Object-Oriented Programming,2020-07-04
+15,Recursion,2021-10-25
+16,Databases,2021-04-07

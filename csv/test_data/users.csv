@@ -1,0 +1,17 @@
+user_id,first_name,last_name,phone,email,password,active,date_created,hire_date,user_type
+2,Robin,Du Plantier,378-144-6393,rduplantier0@google.nl,qaXpg0f2d,0,2020-06-01,2023-01-06,user
+3,Thomasa,Davidovicz,999-178-9760,tdavidovicz1@odnoklassniki.ru,Z5pwJHUoZVR,0,2021-03-29,2022-03-09,manager
+4,Griffy,Spykins,735-603-4843,gspykins2@meetup.com,NY3ugFE,1,2020-01-07,2020-01-03,user
+5,Cassondra,Hassen,106-926-7652,chassen3@pbs.org,lEDqrrtff,1,2022-12-02,,user
+6,Aubrey,MacKeogh,172-230-6950,amackeogh4@taobao.com,X0KAuTCC,1,2020-02-20,,user
+7,Danny,Hemphrey,519-583-9851,dhemphrey5@howstuffworks.com,0zctYKtMS4F,0,2020-08-26,2021-04-26,user
+8,Rodrick,Stidston,372-331-5370,rstidston6@multiply.com,O70CU8,1,2021-07-04,2022-08-26,user
+9,Aleda,Dur,401-783-3688,adur7@indiatimes.com,jAuldQ5,0,2021-12-21,,user
+10,Der,Fidock,401-800-5275,dfidock8@github.com,mVvlzlRfG,1,2021-05-06,2021-06-08,manager
+11,Albie,Warlow,404-406-7858,awarlow9@dyndns.org,6oigT9rDg,0,2022-09-10,,user
+12,Sisile,Kidds,372-460-8725,skiddsa@miibeian.gov.cn,LoZkx3M,1,2020-07-22,,user
+13,Robbyn,Markussen,539-750-4756,rmarkussenb@cisco.com,8qQrYW6Oiy,1,2021-05-08,2022-11-18,manager
+14,Joete,Tomkinson,166-793-3322,jtomkinsonc@usnews.com,Dkgi5rh,1,2022-09-05,,user
+15,Elsie,Kemm,699-914-9923,ekemmd@last.fm,QxNdIM,1,2022-06-10,2022-11-11,user
+16,Lyndsey,Innocent,442-571-0618,linnocente@topsy.com,NOESJf,1,2022-10-30,,user
+17,Viviyan,McKeevers,948-209-1851,vmckeeversf@prlog.org,HLdjwvfX,1,2021-11-05,2021-12-20,manager
