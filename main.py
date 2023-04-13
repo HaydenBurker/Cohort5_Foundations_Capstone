@@ -3,10 +3,10 @@ from manager_menu import manager_menu
 from passwords import input_password
 from user_menu import user_menu
 
-def login_if_manager_doesnt_exist() -> db.User:
+def login_if_manager_doesnt_exist():
     managers = db.read_all_managers()
     if managers:
-        return None
+        return
     print("Welcome to the Competency Tracker!")
     print("Fill out the form below to create your account:\n")
     
@@ -38,7 +38,10 @@ def login_if_manager_doesnt_exist() -> db.User:
     user_type = db.UserTypes.manager
     manager = db.create_user_with_defaults(first_name, last_name, phone, email, password, user_type)
     db.commit()
-    return manager
+    
+    manager_menu(manager)
+    print()
+    manager = None
 
 def login():
     email = input('Email: ')
@@ -54,12 +57,7 @@ def login():
             user_menu(user)
 
 def main():
-    manager = login_if_manager_doesnt_exist()
-    
-    if manager:
-        manager_menu(manager)
-        print()
-        manager = None
+    login_if_manager_doesnt_exist()
     
     while True:
         print('''Competency Tracker Login Page

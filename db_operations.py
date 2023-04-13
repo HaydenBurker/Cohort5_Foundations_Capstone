@@ -15,16 +15,16 @@ def create_db():
     with open("models/schema.sql") as my_queries:
         queries = my_queries.read()
     cursor.executescript(queries)
-    users_file_exists = file_exists(users_csv_import_path)
-    competencies_file_exists = file_exists(competencies_csv_import_path)
-    assessments_file_exists = file_exists(assessments_csv_import_path)
-    assessment_results_file_exists = file_exists(assessment_results_csv_import_path)
+    users_file_exists = check_users_import()
+    competencies_file_exists = check_competencies_import()
+    assessments_file_exists = check_assessments_import()
+    assessment_results_file_exists = check_assessment_results_import()
     if True in [users_file_exists, competencies_file_exists, assessments_file_exists, assessment_results_file_exists]:
         import_option = input("Import files found. Do you want to add them to the database? (y/n): ")
         if import_option.upper() != 'Y':
             return
 
-    if file_exists(users_csv_import_path):
+    if users_file_exists:
         print('''users.csv found. Here are the import options
 
 [1] Hashed passwords
@@ -45,17 +45,17 @@ If logins fail: close app, delete 'competency_tracker.db' in the database folder
         if not users_imported:
             print(f'Failed to import {users_csv_import_path}')
 
-    if file_exists(competencies_csv_import_path):
+    if competencies_file_exists:
         print(f'Importing {competencies_csv_import_path}')
         if not import_competencies_from_csv():
             print(f'Failed to import {competencies_csv_import_path}')
 
-    if file_exists(assessments_csv_import_path):
+    if assessments_file_exists:
         print(f'Importing {assessments_csv_import_path}')
         if not import_assessments_from_csv():
             print(f'Failed to import {competencies_csv_import_path}')
             
-    if file_exists(assessment_results_csv_import_path):
+    if assessment_results_file_exists:
         print(f'Importing {assessment_results_csv_import_path}')
         if not import_assessment_results_from_csv():
             print(f'Failed to import {competencies_csv_import_path}')
@@ -347,28 +347,12 @@ competencies_csv_import_path = f"{csv_table_import_path}{Competency.table_name.l
 assessments_csv_import_path = f"{csv_table_import_path}{Assessment.table_name.lower()}.csv"
 assessment_results_csv_import_path = f"{csv_table_import_path}{AssessmentResult.table_name.lower()}.csv"
 
-def confirm(message, confirmed_message = None, cancelled_message = None):
-    print(message)
-    response = input('Are you sure? (Y/N) ')
-    result = response.upper() == 'Y'
-    if result and confirmed_message:
-        print(confirmed_message)
-    elif not result and cancelled_message:
-        print(cancelled_message)
-    return result
-
-def confirm_export_file_replace(file_name):
-    return confirm(f'{file_name} already exists and will be replaced.', 'Export confirmed', 'Export cancelled')
-
 def export_to_csv(file_name, rows, fields):
     with open(file_name, 'w+') as csv_file:
         csv_writer = csv.writer(csv_file)
         csv_writer.writerow(fields)
         for row in rows:
             csv_writer.writerow(row)
-
-def remove_field(rows, field_id):
-    return [r[:field_id - len(r)] + r[field_id + 1:] for r in rows]
 
 def read_and_export_to_csv(file_name, fields, read_table):
     records = read_table()

@@ -21,13 +21,6 @@ def print_table_to_pdf(pdf: FPDF, ln, rows, fields = None):
     for row in rows:
         row = list(row)
         for i, column_size in enumerate(column_sizes):
-            
-            if row[i] == None:
-                row[i] = "NULL"
-            if type(row[i]) == bytes:
-                row[i] = str(row[i])
-            if type(row[i]) == float:
-                row[i] = str(f'{row[i]:.3f}')
             text += f"{row[i]:<{column_size}}  "
         pdf.cell(width, height, txt = text, ln = ln, align = 'C')
         ln += 1
