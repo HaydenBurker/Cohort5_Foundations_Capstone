@@ -118,6 +118,9 @@ def update_assessment_result():
                 continue
             assessment_result.date_taken = new_date
         elif response == '3':
+            delete_option = input("Are you sure you want to delete this result? (y/n): ")
+            if delete_option.upper() != 'Y':
+                continue
             db.delete_assessment_result(assessment_result)
             db.commit()
             print("Assessment result has been removed! Returning to Assessment Result Options")
