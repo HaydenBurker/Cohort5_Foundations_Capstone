@@ -32,7 +32,7 @@ def create_user() -> db.User:
 
 def view_all_users():
     user_list = db.read_all_users()
-    fields = ["User ID", "First Name", "Last Name", "Phone Number", "Email", "Password", "Active", "Creation Date", "Hire Date", "User Type"]
+    fields = ["User ID", "First Name", "Last Name", "Phone Number", "Email", "Password", "Active", "Date Created", "Hire Date", "User Type"]
     print()
     print_table(user_list, fields)
     print()
@@ -59,9 +59,10 @@ def update_user(manager: db.User):
 [2] Change phone number
 [3] Change email
 [4] Change password
-[5] Change Hire date
+[5] Change hire date
 [6] Change type to {db.UserTypes.user if user.user_type == db.UserTypes.manager else db.UserTypes.manager}
 [7] {"Activate" if user.active == 0 else "Deactivate"} {user.user_type}
+[8] Change date created
 [Q] Back to User Options''')
         response = input(">>> ")
 
@@ -111,6 +112,12 @@ def update_user(manager: db.User):
             user.active = 1 if user.active == 0 else 0
         elif response.upper() == 'Q':
             break
+
+        elif response == '8':
+            date_created = input_date("Date Created: ")
+            if not date_created:
+                continue
+            user.date_created = date_created
 
         try:
             db.update_user(user, change_password)
