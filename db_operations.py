@@ -314,16 +314,17 @@ LEFT OUTER JOIN (
     WHERE a.competency_id = ?
 ) AS ar ON ar.user_id = u.user_id
 LEFT OUTER JOIN Competencies AS c ON c.competency_id = ar.competency_id
+WHERE u.active = 1
 GROUP BY u.user_id, c.competency_id
 HAVING date_taken = MAX(date_taken) OR date_taken IS NULL
 ORDER BY LOWER(u.first_name), LOWER(u.last_name)'''
     else:
         query = '''SELECT c.competency_id, c.name, u.first_name, u.last_name, ar.score, a.name, ar.date_taken
 FROM Users AS u
-LEFT OUTER JOIN Assessment_Results AS ar ON ar.user_id = u.user_id
-LEFT OUTER JOIN Assessments AS a ON a.assessment_id = ar.assessment_id
-LEFT OUTER JOIN Competencies AS c ON c.competency_id = a.competency_id
-WHERE c.competency_id = ?
+JOIN Assessment_Results AS ar ON ar.user_id = u.user_id
+JOIN Assessments AS a ON a.assessment_id = ar.assessment_id
+JOIN Competencies AS c ON c.competency_id = a.competency_id
+WHERE c.competency_id = ? AND u.active = 1
 GROUP BY u.user_id, c.competency_id
 HAVING date_taken = MAX(date_taken) OR date_taken IS NULL
 ORDER BY LOWER(u.first_name), LOWER(u.last_name)'''
