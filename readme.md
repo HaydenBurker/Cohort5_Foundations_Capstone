@@ -7,6 +7,10 @@
 	pipenv shell
 	python main.py
 
+Running the app for the first time will take you to a form to create a manager. The credentials entered there will be the login credentials next time you login.
+
+If at least one manager already exists, running the app will take you to the login page.
+
 ### Steps to add test data
 
 * Login as manager
